@@ -27,18 +27,27 @@ def find_movie():
         if movie["title"]==search_title:
             print_movie(movie)
 
+user_options={
+    "a": add_movie(),
+    "l":show_movie(),
+    "f":find_movie()
+}
 
 def menu():
     selection=input(MENU_PROMPT)
     while selection!='q':
-        if selection=='a':
-            add_movie()
-        elif selection=='l':
-            show_movie()
-        elif selection=='f':
-            find_movie()
+        if selection in user_options:  #first-class functions
+            selected_function=user_options[selection]
         else:
             print("Unknown command. Please try again.")
         selection=input(MENU_PROMPT)
 
 menu()
+
+"""if selection=='a':
+           add_movie()
+       elif selection=='l':
+           show_movie()
+       elif selection=='f':
+           find_movie() 
+"""
